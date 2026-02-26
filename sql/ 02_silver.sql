@@ -11,7 +11,7 @@ SELECT
     ss.ss_customer_sk,
     ss.ss_quantity,
     ss.ss_sales_price,
-FROM BRONZE.STORE_SALES ss
+FROM BRONZE.STORE_SALES_RAW ss
 JOIN SNOWFLAKE_SAMPLE_DATA.TPCDS_SF100TCL.DATE_DIM dd
     ON ss.ss_sold_date_sk = dd.d_date_sk
 WHERE dd.d_year BETWEEN 1998 AND 1999
@@ -25,4 +25,4 @@ FROM SILVER.STORE_SALES ss;
 
 SELECT COUNT(*) FROM SILVER.STORE_SALES WHERE ss_sales_price IS NULL;
 
-SELECT COUNT(*) FROM SILVER.STORE_SALES WHERE ss_quantity <= 0;
+SELECT COUNT(*) FROM SILVER.STORE_SALES WHERE ss_quantity <= 0; 
